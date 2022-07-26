@@ -47,5 +47,5 @@ jobs:
 
       #       
       - name: restart process
-            run: ssh production 'docker stop odoo'
+        run: ssh production 'docker stop odoo'
 
