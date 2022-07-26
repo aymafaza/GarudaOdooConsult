@@ -1,0 +1,2 @@
+# MyOdoo
+Odoo module
