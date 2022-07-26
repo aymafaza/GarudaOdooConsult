@@ -7,8 +7,6 @@ on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -29,8 +27,25 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
 
-      # Runs a set of commands using the runners shell
+      # Remote VM
       - name: Run a multi-line script
+        env:
+            SSH_USER: ${{ secrets.USERNAME}}
+            SSH_KEY: ${{ secrets.SSH_KEY }}
+            SSH_HOST: ${{ secrets.HOST }}
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+            mkdir -p ~/.ssh/
+            echo "$SSH_KEY" > ~/.ssh/gpos.pem
+            chmod 400 ~/.ssh/gpos.pem
+            cat >>~/.ssh/config <<END
+            Host production
+              HostName $SSH_HOST
+              User $SSH_USER
+              IdentityFile ~/.ssh/gpos.pem
+              StrictHostKeyChecking=no
+            END
+
+      #       
+      - name: restart process
+            run: ssh production 'docker stop odoo'
+
