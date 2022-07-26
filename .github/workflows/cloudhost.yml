@@ -48,7 +48,5 @@ jobs:
 
       #       
       - name: restart process
-        run: ssh production 'sudo docker stop odoo'
-        
-      # check
+        run: ssh production 'cd /home/aymafaza/MyOdoo/ && git pull origin main && sudo docker restart odoo'
 
