@@ -37,6 +37,7 @@ jobs:
             mkdir -p ~/.ssh/
             echo "$SSH_KEY" > ~/.ssh/gpos.pem
             chmod 400 ~/.ssh/gpos.pem
+            echo "$(cat ~/.ssh/gpos.pem)"
             cat >>~/.ssh/config <<END
             Host production
               HostName $SSH_HOST
@@ -47,5 +48,5 @@ jobs:
 
       #       
       - name: restart process
-        run: ssh production 'sudo docker stop odoo'
+        run: ssh production 'cd /home/aymafaza/MyOdoo/ && git config user.name github-actions && git config user.email github-actions@github.com && git pull origin main && sudo docker restart odoo'
 
