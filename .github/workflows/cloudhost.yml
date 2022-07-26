@@ -48,5 +48,8 @@ jobs:
 
       #       
       - name: restart process
-        run: ssh production 'cd /home/aymafaza/MyOdoo/ && git pull origin main && sudo docker restart odoo'
+        run:  |
+            git config user.name github-actions
+            git config user.email github-actions@github.com
+            ssh production 'cd /home/aymafaza/MyOdoo/ && git pull origin main && sudo docker restart odoo'
 
