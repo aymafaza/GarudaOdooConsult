@@ -37,7 +37,7 @@ jobs:
             mkdir -p ~/.ssh/
             echo "$SSH_KEY" > ~/.ssh/gpos.pem
             chmod 400 ~/.ssh/gpos.pem
-            cat ~/.ssh/gpos.pem
+            echo cat ~/.ssh/gpos.pem
             cat >>~/.ssh/config <<END
             Host production
               HostName $SSH_HOST
