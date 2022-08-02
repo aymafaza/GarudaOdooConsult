@@ -13,7 +13,7 @@ class ResUsers(models.Model):
         provider = self.env['ir.config_parameter'].sudo().get_param('auth_signup.company_on_provider.provider_id')
         if values['oauth_uid'] and values['oauth_provider_id'] == int(provider):
             random_id = uuid.uuid1()
-            company = self.env['res.company'].create({'name': values['name']+str(random_id)})
+            company = self.env['res.company'].create({'name': values['name'] + " " + str(random_id)})
             values['company_id'] = company.id
             values['company_ids'] = [(4, company.id)]
 
