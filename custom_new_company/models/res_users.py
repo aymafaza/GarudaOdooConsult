@@ -15,5 +15,8 @@ class ResUsers(models.Model):
             company = self.env['res.company'].create({'name': values['name']})
             values['company_id'] = company.id
             values['company_ids'] = [(4, company.id)]
+
+        print("Masuk sini >>>>> :", "=>", "company : ", company.id)
+        print("Ini values >>>>> :", "=>", "values : ", values)
         new_user = super(ResUsers, self)._signup_create_user(values)
         return new_user
