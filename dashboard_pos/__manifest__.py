@@ -29,7 +29,7 @@
     'company': 'Cybrosys Techno Solutions',
     'maintainer': 'Cybrosys Techno Solutions',
     'website': "https://www.cybrosys.com",
-    'depends': ['base'],
+    'depends': ['point_of_sale'],
     'external_dependencies': {
         'python': ['pandas'],
     },
