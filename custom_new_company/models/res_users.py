@@ -10,13 +10,10 @@ class ResUsers(models.Model):
     def _signup_create_user(self, values):
         # Create new company on sign up with defined oauth provider
         provider = self.env['ir.config_parameter'].sudo().get_param('auth_signup.company_on_provider.provider_id')
-        print("provider : ",provider, "=>", "oauth_uid : ", values['oauth_uid'], "oauth_provider_id : ", values['oauth_provider_id'])
-        if values['oauth_uid'] and values['oauth_provider_id'] == provider:
+        if values['oauth_uid'] and values['oauth_provider_id'] == int(provider):
             company = self.env['res.company'].create({'name': values['name']})
             values['company_id'] = company.id
             values['company_ids'] = [(4, company.id)]
 
-        print("Masuk sini >>>>> :", "=>", "company : ", company.id)
-        print("Ini values >>>>> :", "=>", "values : ", values)
         new_user = super(ResUsers, self)._signup_create_user(values)
         return new_user
