@@ -22,7 +22,7 @@
     'license': "OPL-1",
     'live_test_url': 'https://en.funenc.com/',
 
-    'images': ['static/description/awesome_description.gif'],
+    # 'images': ['static/description/awesome_description.gif'],
 
     'category': 'App/pwa',
     'version': '15.0.0.2',
